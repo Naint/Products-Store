@@ -13,7 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        adapter = ProductAdapter()
+        adapter = ProductAdapter(this)
         binding.rvProducts.adapter = adapter
 
         val retrofit = Retrofit.Builder()
@@ -43,24 +43,5 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
         }
-
-
-
-
-        /* val retrofit = Retrofit.Builder()
-            .baseUrl("https://dummyjson.com")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-
-
-        CoroutineScope(Dispatchers.IO).launch {
-            val productApi = retrofit.create(ProductApi::class.java)
-            val product = productApi.getProductById()
-            runOnUiThread{
-                Log.i("info", product.brand)
-            }
-        }*/
-
     }
 }

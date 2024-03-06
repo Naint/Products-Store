@@ -1,31 +1,31 @@
 package com.example.phonestore.adapters
 
-import android.util.Log
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-
-
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.phonestore.utils.GlideApp
 import com.example.phonestore.R
 import com.example.phonestore.data.Product
 import com.example.phonestore.databinding.ItemListProductBinding
 
-class ProductAdapter: ListAdapter<Product, ProductAdapter.Holder>(Comparator()){
+class ProductAdapter(val context: Context): ListAdapter<Product, ProductAdapter.Holder>(Comparator()){
 
     class Holder(view: View): RecyclerView.ViewHolder(view){
         private val binding = ItemListProductBinding.bind(view)
 
-        fun bind(product: Product) = with(binding){
+        fun bind(product: Product, context: Context) = with(binding){
             tvTitle.text = product.title
             tvPrice.text = product.price.toString()
-            tvRating.text = product.rating.toString()
-            Log.i("ADAPTER_LOG", product.title)
-        }
+            tvDescription.text = product.description
 
+            GlideApp.with(context)
+                .load(product.thumbnail)
+                .into(ivThumbnail)
+        }
     }
 
     class Comparator: DiffUtil.ItemCallback<Product>() {
@@ -44,8 +44,6 @@ class ProductAdapter: ListAdapter<Product, ProductAdapter.Holder>(Comparator()){
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), context)
     }
-
-
 }

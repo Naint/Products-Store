@@ -2,36 +2,43 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="20dp">
 
     <LinearLayout
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_width="195dp"
+        android:layout_height="220dp"
         android:layout_gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="5dp">
 
         <ImageView
+            android:id="@+id/ivThumbnail"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:background="@color/black"
             android:layout_gravity="center_horizontal"/>
 
         <TextView
             android:id="@+id/tvTitle"
-            android:text="Iphone"
+            tools:text="Название"
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/tvPrice"
-            android:text="500 Р"
+            tools:text="Стоимость"
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:id="@+id/tvRating"
-            android:text="Рейтинг: 5.0"
+            android:id="@+id/tvDescription"
+            tools:text="Описание товара"
+            android:textSize="12sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
