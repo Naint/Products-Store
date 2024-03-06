@@ -13,6 +13,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
+import java.lang.NullPointerException
 
 
 class MainActivity : AppCompatActivity() {
@@ -28,20 +30,75 @@ class MainActivity : AppCompatActivity() {
         adapter = ProductAdapter(this)
         binding.rvProducts.adapter = adapter
 
-        val retrofit = Retrofit.Builder()
+        val productApi = Retrofit.Builder()
             .baseUrl("https://dummyjson.com")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+            .create(ProductApi::class.java)
 
-        val productApi = retrofit.create(ProductApi::class.java)
+        setList(productApi, 0) //1..20
+        var pageNumber = 1
+        val pageKeys = mapOf(1 to 0, 2 to 20, 3 to 40, 4 to 60, 5 to 80, 6 to 100, 7 to 120)
 
-        CoroutineScope(Dispatchers.IO).launch {
-            val list = productApi.getAllProducts()
-                runOnUiThread{
-                    binding.apply {
-                        adapter.submitList(list.products)
+        try{
+            binding.btnNextPage.setOnClickListener{
+                var buff = pageNumber
+                pageNumber += 1
+                if(pageNumber > 6)
+                    pageNumber = buff
+                Log.i("NextPate", pageNumber.toString())
+                CoroutineScope(Dispatchers.IO).launch {
+
+                    val list = productApi.getProducts(pageKeys[pageNumber]!!)
+                    runOnUiThread{
+                        binding.apply {
+                            if(list.products.isNotEmpty())
+                                adapter.submitList(list.products)
+                            else
+                                pageNumber = buff
+                        }
                     }
+
                 }
+            }
+        }catch (e : Exception){
+            Log.i("Button NextPage Exception", e.toString())
+        }
+
+
+        try{
+            binding.btnPrevPage.setOnClickListener {
+                var buff = pageNumber
+                if(pageNumber > 1)
+                    pageNumber -= 1
+                Log.i("PrevPage", pageNumber.toString())
+                CoroutineScope(Dispatchers.IO).launch{
+                    val list = productApi.getProducts(pageKeys.get(pageNumber)!!)
+                    runOnUiThread {
+                        binding.apply {
+                            if(list.products.isNotEmpty())
+                                adapter.submitList(list.products)
+                            else
+                                pageNumber = buff
+                        }
+                    }
+
+                }
+            }
+        }catch (e: Exception){
+            Log.i("Button PrevPage Exception", e.toString())
         }
     }
+
+    private fun setList(productApi: ProductApi, number: Int){
+        CoroutineScope(Dispatchers.IO).launch {
+            val list = productApi.getProducts(number)
+            runOnUiThread{
+                binding.apply {
+                    adapter.submitList(list.products)
+                }
+            }
+        }
+    }
+
 }

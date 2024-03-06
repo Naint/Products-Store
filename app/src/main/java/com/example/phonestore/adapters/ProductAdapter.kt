@@ -1,6 +1,7 @@
 package com.example.phonestore.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +26,7 @@ class ProductAdapter(val context: Context): ListAdapter<Product, ProductAdapter.
             GlideApp.with(context)
                 .load(product.thumbnail)
                 .into(ivThumbnail)
+            Log.i("BINDINFO", product.title)
         }
     }
 
