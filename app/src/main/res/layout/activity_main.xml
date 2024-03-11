@@ -6,11 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <android.widget.SearchView
+        android:id="@+id/svSearchProduct"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="3dp"
+        android:layout_marginLeft="3dp"
+        android:background="@drawable/searchview_background"
+        app:layout_constraintEnd_toStartOf="@+id/btnPrevPage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </android.widget.SearchView>
+
     <Button
         android:id="@+id/btnNextPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=">>"
+        android:text="@string/next"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -18,8 +31,9 @@
         android:id="@+id/btnPrevPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/back"
         app:layout_constraintEnd_toStartOf="@+id/btnNextPage"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProducts"
@@ -31,7 +45,5 @@
         android:layout_height="wrap_content">
 
     </androidx.recyclerview.widget.RecyclerView>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

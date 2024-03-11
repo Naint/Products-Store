@@ -6,8 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.phonestore.data.Product
 import com.example.phonestore.data.retrofit.ProductApi
-import com.example.phonestore.data.retrofit.Products
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -25,6 +23,13 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ProductApi::class.java)
+    }
+
+    fun searchProduct(text: String){
+        viewModelScope.launch{
+            val list = text.let { getApi().getProductsByName(text) }
+            listProducts.value = list.products
+        }
     }
 
     fun clickNextPage(){
