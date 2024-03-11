@@ -38,18 +38,14 @@ class MainActivity : AppCompatActivity() {
 
         setList(productApi, 0) //1..20
         var pageNumber = 1
-        val pageKeys = mapOf(1 to 0, 2 to 20, 3 to 40, 4 to 60, 5 to 80, 6 to 100, 7 to 120)
 
         try{
             binding.btnNextPage.setOnClickListener{
                 var buff = pageNumber
                 pageNumber += 1
-                if(pageNumber > 6)
-                    pageNumber = buff
-                Log.i("NextPate", pageNumber.toString())
                 CoroutineScope(Dispatchers.IO).launch {
-
-                    val list = productApi.getProducts(pageKeys[pageNumber]!!)
+                    Log.i("PageNumber", pageNumber.toString())
+                    val list = productApi.getProducts(pageNumber * 20 - 20)
                     runOnUiThread{
                         binding.apply {
                             if(list.products.isNotEmpty())
@@ -73,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                     pageNumber -= 1
                 Log.i("PrevPage", pageNumber.toString())
                 CoroutineScope(Dispatchers.IO).launch{
-                    val list = productApi.getProducts(pageKeys.get(pageNumber)!!)
+                    val list = productApi.getProducts(pageNumber * 20 - 20)
                     runOnUiThread {
                         binding.apply {
                             if(list.products.isNotEmpty())
