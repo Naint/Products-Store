@@ -26,7 +26,6 @@ class ProductAdapter(val context: Context): ListAdapter<Product, ProductAdapter.
             GlideApp.with(context)
                 .load(product.thumbnail)
                 .into(ivThumbnail)
-            Log.i("BINDINFO", product.title)
         }
     }
 
