@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cvProduct"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="195dp"
-        android:layout_height="220dp"
+        android:layout_height="210dp"
         android:layout_gravity="center_horizontal"
         android:orientation="vertical"
         android:layout_margin="10dp">
@@ -18,17 +19,20 @@
             android:id="@+id/ivThumbnail"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            style="@style/textStyleMainList"
             android:layout_gravity="center_horizontal"/>
 
         <TextView
             android:id="@+id/tvTitle"
             tools:text="Название"
+            style="@style/textStyleMainList"
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/tvPrice"
             tools:text="Стоимость"
+            style="@style/textStyleMainList"
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -36,7 +40,7 @@
         <TextView
             android:id="@+id/tvDescription"
             tools:text="Описание товара"
-            android:textSize="12sp"
+            style="@style/textStyleMainList"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_gravity="center_horizontal"

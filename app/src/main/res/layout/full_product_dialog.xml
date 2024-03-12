@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivProduct"
+        android:layout_width="300dp"
+        android:layout_height="250dp"/>
+
+    <TextView
+        android:id="@+id/tvTitle"
+        tools:text="Iphone 9"
+        style="@style/textStyleProductDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tvPrice"
+        tools:text="500 P"
+        style="@style/textStyleProductDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tvRating"
+        tools:text="Рейтинг: 4.9⭐"
+        style="@style/textStyleProductDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tvDescription"
+        tools:text="Описание"
+        style="@style/textStyleProductDialog"
+        android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

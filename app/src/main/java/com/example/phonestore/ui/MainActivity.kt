@@ -1,4 +1,4 @@
-package com.example.phonestore
+package com.example.phonestore.ui
 
 import android.content.Context
 import android.net.ConnectivityManager

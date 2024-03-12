@@ -1,7 +1,6 @@
 package com.example.phonestore.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +11,7 @@ import com.example.phonestore.utils.GlideApp
 import com.example.phonestore.R
 import com.example.phonestore.data.Product
 import com.example.phonestore.databinding.ItemListProductBinding
+import com.example.phonestore.ui.DialogManager
 
 class ProductAdapter(val context: Context): ListAdapter<Product, ProductAdapter.Holder>(Comparator()){
 
@@ -26,6 +26,10 @@ class ProductAdapter(val context: Context): ListAdapter<Product, ProductAdapter.
             GlideApp.with(context)
                 .load(product.thumbnail)
                 .into(ivThumbnail)
+
+            cvProduct.setOnClickListener {
+                DialogManager.showProductDialog(context, product)
+            }
         }
     }
 
